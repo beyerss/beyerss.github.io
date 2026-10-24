@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sudoku: Notes &amp; Colors</title>
+    <meta name="description" content="A new sudoku every day at every level. Pro notes and colors, no ads, no account, plays offline.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Sudoku: Notes &amp; Colors">
+    <meta property="og:description" content="Can you beat my time? A new sudoku every day at every level. No ads, ever.">
+    <meta property="og:url" content="https://beyerss.github.io/sudoku/">
+    <meta property="og:image" content="https://beyerss.github.io/sudoku/share.png">
+    <meta property="og:image:width" content="1024">
+    <meta property="og:image:height" content="500">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" href="icon.png">
+    <link rel="apple-touch-icon" href="icon.png">
+    <script>
+        // Sends phones and tablets straight to their store. Everyone else sees both links below.
+        // APP_STORE_ID is the app's Apple ID from App Store Connect; until it's filled in, Apple's lookup finds it.
+        var APP_STORE_ID = "";
+        var BUNDLE_ID = "com.supergoose.sudoku";
+        var PLAY_STORE = "https://play.google.com/store/apps/details?id=" + BUNDLE_ID;
+        var ua = navigator.userAgent || "";
+        var apple = /iPhone|iPad|iPod/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
+        var android = /Android/.test(ua);
+
+        function appStore(id) { return "https://apps.apple.com/app/id" + id; }
+
+        // Apple's lookup answers with a call to this function.
+        function foundApp(response) {
+            var app = response && response.results && response.results[0];
+            if (!app) return;
+            APP_STORE_ID = String(app.trackId);
+            if (apple) location.replace(appStore(APP_STORE_ID));
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            if (APP_STORE_ID) document.getElementById("app-store").href = appStore(APP_STORE_ID);
+        });
+
+        if (android) {
+            location.replace(PLAY_STORE);
+        } else if (APP_STORE_ID) {
+            if (apple) location.replace(appStore(APP_STORE_ID));
+        } else {
+            document.write('<script src="https://itunes.apple.com/lookup?bundleId=' + BUNDLE_ID + '&callback=foundApp"><\/script>');
+        }
+    </script>
+    <style>
+        :root { --blue: #2C5CD0; --deep: #1E3F9A; }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            color: #fff;
+            background: linear-gradient(160deg, #3B6FE0, var(--deep));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 32px 16px;
+            text-align: center;
+        }
+        main { max-width: 440px; }
+        img.icon { width: 112px; height: 112px; border-radius: 26px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25); }
+        h1 { font-size: 32px; margin: 24px 0 8px; }
+        p { font-size: 17px; line-height: 1.5; margin: 0 0 28px; opacity: 0.9; }
+        .stores { display: flex; flex-direction: column; gap: 12px; }
+        .stores a {
+            display: block;
+            padding: 15px 20px;
+            border-radius: 14px;
+            background: #fff;
+            color: var(--blue);
+            font-size: 17px;
+            font-weight: 600;
+            text-decoration: none;
+        }
+        .stores a:hover { background: #EAF0FF; }
+        footer { margin-top: 32px; font-size: 13px; opacity: 0.75; }
+        footer a { color: #fff; }
+    </style>
+</head>
+<body>
+    <main>
+        <img class="icon" src="icon.png" alt="Sudoku app icon">
+        <h1>Sudoku: Notes &amp; Colors</h1>
+        <p>A new sudoku every day at every level, with pro notes and colors. No ads, no account, plays offline.</p>
+        <div class="stores">
+            <a id="app-store" href="https://apps.apple.com/us/search?term=Sudoku%20Notes%20%26%20Colors">Download on the App Store</a>
+            <a id="play-store" href="https://play.google.com/store/apps/details?id=com.supergoose.sudoku">Get it on Google Play</a>
+        </div>
+        <footer>
+            Made by SuperGoose Software, LLC · <a href="../sudoku-privacy-policy.html">Privacy</a>
+        </footer>
+    </main>
+</body>
+</html>

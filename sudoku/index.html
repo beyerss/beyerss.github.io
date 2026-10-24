@@ -16,13 +16,14 @@
     <link rel="icon" href="icon.png">
     <link rel="apple-touch-icon" href="icon.png">
     <script>
-        // Sends phones and tablets straight to their store. Everyone else sees both links below.
+        // Sends Apple devices and Android phones straight to their store. Everyone else sees both links below.
         // APP_STORE_ID is the app's Apple ID from App Store Connect. Without it, Apple's lookup finds it.
         var APP_STORE_ID = "6821428962";
         var BUNDLE_ID = "com.supergoose.sudoku";
         var PLAY_STORE = "https://play.google.com/store/apps/details?id=" + BUNDLE_ID;
         var ua = navigator.userAgent || "";
-        var apple = /iPhone|iPad|iPod/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
+        // Macs too: the Mac app is the same App Store listing.
+        var apple = /iPhone|iPad|iPod|Macintosh/.test(ua);
         var android = /Android/.test(ua);
 
         function appStore(id) { return "https://apps.apple.com/app/id" + id; }

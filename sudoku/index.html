@@ -39,13 +39,15 @@
         }
 
         document.addEventListener("DOMContentLoaded", function () {
-            if (APP_STORE_ID) document.getElementById("app-store").href = appStore(APP_STORE_ID);
+            var link = document.getElementById("app-store");
+            if (APP_STORE_ID && link) link.href = appStore(APP_STORE_ID);
         });
 
         if (android) {
             location.replace(PLAY_STORE);
         } else if (APP_STORE_ID) {
-            if (apple) location.replace(appStore(APP_STORE_ID));
+            // iOS: uncomment when the App Store listing is live.
+            // if (apple) location.replace(appStore(APP_STORE_ID));
         } else {
             document.write('<script src="https://itunes.apple.com/lookup?bundleId=' + BUNDLE_ID + '&callback=foundApp"><\/script>');
         }
@@ -84,7 +86,9 @@
         <h1>Sudoku: Notes &amp; Colors</h1>
         <p>A new sudoku every day at every level, with pro notes and colors. No ads, no account, plays offline.</p>
         <div class="stores">
+            <!-- iOS: uncomment when the App Store listing is live.
             <a id="app-store" href="https://apps.apple.com/app/id6821428962"><img class="apple" src="app-store-badge.svg" alt="Download on the App Store"></a>
+            -->
             <a id="play-store" href="https://play.google.com/store/apps/details?id=com.supergoose.sudoku"><img class="google" src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play"></a>
         </div>
         <footer>

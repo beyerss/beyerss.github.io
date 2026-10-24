@@ -25,6 +25,8 @@
         // Macs too: the Mac app is the same App Store listing.
         var apple = /iPhone|iPad|iPod|Macintosh/.test(ua);
         var android = /Android/.test(ua);
+        // "?web" shows the page itself on any device, for checking how it looks.
+        if (/[?&]web\b/.test(location.search)) apple = android = false;
 
         function appStore(id) { return "https://apps.apple.com/app/id" + id; }
 
